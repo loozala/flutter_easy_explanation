@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easy_explanation/landing_page_2.dart';
 
 class LandingPage extends StatelessWidget {
   const LandingPage({super.key});
@@ -49,6 +50,24 @@ class LandingPage extends StatelessWidget {
                   ),
                 ),
               ),
+            ),
+            SizedBox(height: 90),
+            Text(
+              "EASY EXPLANATION",
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+                fontSize: 24,
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => LandingPage2()),
+                );
+              },
+              child: Container(width: double.infinity, child: Text("next ->")),
             ),
           ],
         ),
