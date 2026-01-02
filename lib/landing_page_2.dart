@@ -51,13 +51,49 @@ class LandingPage2 extends StatelessWidget {
               ),
             ),
             SizedBox(height: 90),
-            Text(
-              "WELCOME TO EZEXPLANATION",
-              style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 24,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Text(
+                "Welcome to ",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 42,
+                ),
               ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Text(
+                "Ezexplanation",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 42,
+                ),
+              ),
+            ),
+            const SizedBox(height: 8),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Text(
+                "Your comprehensive companion for BCA and BSc. CSIT studies, providing clear notes, practical guidance, and exam-oriented learning materials.",
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w500,
+                  fontSize: 12,
+                ),
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => LandingPage2()),
+                );
+              },
+              child: Container(width: double.infinity, child: Text("next ->")),
             ),
           ],
         ),
