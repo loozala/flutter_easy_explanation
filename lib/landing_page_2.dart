@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'landing_page_3.dart';
 
 class LandingPage2 extends StatelessWidget {
   const LandingPage2({super.key});
@@ -6,96 +7,152 @@ class LandingPage2 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.transparent,
       body: Container(
         width: double.infinity,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(
-            // colors: [Color(0xff2596b3), Color(0xff114558)],
             colors: [Color(0xff2492ba), Color(0xff15566d)],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              child: Container(
+        child: SafeArea(
+          child: Column(
+            children: [
+              const SizedBox(height: 60),
+
+              /// LOGO
+              Container(
                 alignment: Alignment.center,
                 width: 210,
                 height: 210,
-                padding: EdgeInsets.all(30),
+                padding: const EdgeInsets.all(30),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(300),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Color(0xdd2596be),
-                      spreadRadius: 50,
-                      // blurRadius: 30,
-                    ),
+                  boxShadow: const [
+                    BoxShadow(color: Color(0xdd2596be), spreadRadius: 50),
                   ],
                 ),
-                child: Center(
-                  child: Text(
-                    'E',
-                    style: TextStyle(
-                      color: Color(0xff2596b3),
-                      fontSize: 150,
-                      fontWeight: FontWeight.w900,
-                      height: 1.0, // Removes extra vertical space
+                child: const Text(
+                  'E',
+                  style: TextStyle(
+                    color: Color(0xff2596b3),
+                    fontSize: 150,
+                    fontWeight: FontWeight.w900,
+                    height: 1,
+                  ),
+                ),
+              ),
+
+              const SizedBox(height: 80),
+
+              /// TITLE
+              const Text(
+                "Welcome to",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 42,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const Text(
+                "Ezexplanation",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 42,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+
+              const SizedBox(height: 12),
+
+              /// DESCRIPTION
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 24),
+                child: Text(
+                  "Your comrehensive companion for BCA and BSc. CSIT studies, providing clear notes, practical guidance, and exam-oriented learning materials.",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 13,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+              ),
+
+              const Spacer(),
+
+              /// PAGE INDICATOR (WHITE LINE + DOTS)
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width: 32,
+                    height: 6,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  Container(
+                    width: 8,
+                    height: 8,
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.4),
+                      shape: BoxShape.circle,
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  Container(
+                    width: 8,
+                    height: 8,
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.4),
+                      shape: BoxShape.circle,
+                    ),
+                  ),
+                ],
+              ),
+
+              const SizedBox(height: 30),
+
+              /// NEXT BUTTON
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 24),
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const LandingPage3(),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    height: 56,
+                    width: double.infinity,
+                    alignment: Alignment.center,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: const Text(
+                      "Next",
+                      style: TextStyle(
+                        color: Color(0xff2492ba),
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),
               ),
-            ),
-            SizedBox(height: 90),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Text(
-                "Welcome to ",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 42,
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Text(
-                "Ezexplanation",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 42,
-                ),
-              ),
-            ),
-            const SizedBox(height: 8),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Text(
-                "Your comprehensive companion for BCA and BSc. CSIT studies, providing clear notes, practical guidance, and exam-oriented learning materials.",
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w500,
-                  fontSize: 12,
-                ),
-              ),
-            ),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => LandingPage2()),
-                );
-              },
-              child: Container(width: double.infinity, child: Text("next ->")),
-            ),
-          ],
+
+              const SizedBox(height: 30),
+            ],
+          ),
         ),
       ),
     );
