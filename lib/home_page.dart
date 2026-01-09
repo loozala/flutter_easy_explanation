@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'about_us.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -133,6 +134,28 @@ class HomePage extends StatelessWidget {
                   ),
                 ],
               ),
+              Align(
+                alignment: Alignment.centerRight,
+                child: GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const AboutUs()),
+                    );
+                  },
+                  child: const Padding(
+                    padding: EdgeInsets.only(top: 12),
+                    child: Text(
+                      "Next →",
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: Color(0xff2492ba),
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
@@ -148,7 +171,7 @@ class HomePage extends StatelessWidget {
   }) {
     return Container(
       margin: const EdgeInsets.only(bottom: 12),
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 12),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 18),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(14),
