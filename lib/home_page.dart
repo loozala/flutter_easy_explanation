@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'about_us.dart';
+import 'courses.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -82,19 +83,32 @@ class HomePage extends StatelessWidget {
 
               /// LIST ITEMS
               _menuTile(
+                context: context,
                 icon: Icons.menu_book,
                 color: Colors.orange,
-                title: "Syllabus",
+                title: "Courses",
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const CoursesPage(),
+                    ),
+                  );
+                },
               ),
+
               _menuTile(
+                context: context,
                 icon: Icons.subject,
                 color: Colors.green,
                 title: "Subjects",
               ),
+
               _menuTile(
+                context: context,
                 icon: Icons.school,
-                color: Colors.yellow.shade700,
-                title: "Course",
+                color: Colors.yellow,
+                title: "Syllabus",
               ),
 
               const SizedBox(height: 20),
@@ -107,7 +121,6 @@ class HomePage extends StatelessWidget {
 
               const SizedBox(height: 12),
 
-              // Add top padding inside GridView
               GridView.count(
                 crossAxisCount: 2,
                 shrinkWrap: true,
@@ -134,6 +147,7 @@ class HomePage extends StatelessWidget {
                   ),
                 ],
               ),
+
               Align(
                 alignment: Alignment.centerRight,
                 child: GestureDetector(
@@ -165,35 +179,44 @@ class HomePage extends StatelessWidget {
 
   /// MENU TILE WIDGET
   Widget _menuTile({
+    required BuildContext context,
     required IconData icon,
     required Color color,
     required String title,
+    VoidCallback? onTap,
   }) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 12),
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 18),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(14),
-        boxShadow: [
-          BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 8),
-        ],
-      ),
-      child: Row(
-        children: [
-          CircleAvatar(
-            backgroundColor: color,
-            child: Icon(icon, color: Colors.white),
-          ),
-          const SizedBox(width: 16),
-          Expanded(
-            child: Text(
-              title,
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(14),
+      child: Container(
+        margin: const EdgeInsets.only(bottom: 12),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 18),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(14),
+          boxShadow: [
+            BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 8),
+          ],
+        ),
+        child: Row(
+          children: [
+            CircleAvatar(
+              backgroundColor: color,
+              child: Icon(icon, color: Colors.white),
             ),
-          ),
-          const Icon(Icons.chevron_right),
-        ],
+            const SizedBox(width: 16),
+            Expanded(
+              child: Text(
+                title,
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+            const Icon(Icons.chevron_right),
+          ],
+        ),
       ),
     );
   }
@@ -223,7 +246,6 @@ class _ToolCard extends StatelessWidget {
         ],
       ),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
         children: [
           CircleAvatar(
             radius: 18,
