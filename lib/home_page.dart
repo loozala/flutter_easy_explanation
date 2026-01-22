@@ -86,7 +86,7 @@ class HomePage extends StatelessWidget {
                 context: context,
                 icon: Icons.menu_book,
                 color: Colors.orange,
-                title: "Courses",
+                title: "Bsc.CSIT",
                 onTap: () {
                   Navigator.push(
                     context,
@@ -101,14 +101,14 @@ class HomePage extends StatelessWidget {
                 context: context,
                 icon: Icons.subject,
                 color: Colors.green,
-                title: "Subjects",
+                title: "BCA",
               ),
 
               _menuTile(
                 context: context,
                 icon: Icons.school,
                 color: Colors.yellow,
-                title: "Syllabus",
+                title: "Computer Engineering",
               ),
 
               const SizedBox(height: 20),
