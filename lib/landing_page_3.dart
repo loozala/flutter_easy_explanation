@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'landing_page_4.dart';
-import 'home_page.dart';
 
 class LandingPage3 extends StatelessWidget {
   const LandingPage3({super.key});
@@ -23,7 +22,7 @@ class LandingPage3 extends StatelessWidget {
               /// MAIN CONTENT
               Column(
                 children: [
-                  const SizedBox(height: 60),
+                  const SizedBox(height: 120),
 
                   /// LOGO
                   Container(
@@ -49,77 +48,14 @@ class LandingPage3 extends StatelessWidget {
                     ),
                   ),
 
-                  const SizedBox(height: 80),
-
-                  /// TITLE
-                  const Text(
-                    "Practice With Notes",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 42,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-
-                  const SizedBox(height: 12),
-
-                  /// DESCRIPTION
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 24),
-                    child: Text(
-                      "Access well-structured notes and practical materials designed by the experts to clearly explain concepts and support effective exam preparation.",
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 13,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                  ),
-
                   const Spacer(),
 
-                  /// PAGE INDICATOR
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        width: 32,
-                        height: 6,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                      ),
-                      const SizedBox(width: 8),
-                      Container(
-                        width: 8,
-                        height: 8,
-                        decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.4),
-                          shape: BoxShape.circle,
-                        ),
-                      ),
-                      const SizedBox(width: 8),
-                      Container(
-                        width: 8,
-                        height: 8,
-                        decoration: BoxDecoration(
-                          color: Colors.white.withOpacity(0.4),
-                          shape: BoxShape.circle,
-                        ),
-                      ),
-                    ],
-                  ),
-
-                  const SizedBox(height: 30),
-
-                  /// NEXT BUTTON
+                  /// GOOGLE SIGN IN BUTTON
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 24),
+                    padding: const EdgeInsets.symmetric(horizontal: 32),
                     child: GestureDetector(
                       onTap: () {
-                        Navigator.push(
+                        Navigator.pushReplacement(
                           context,
                           MaterialPageRoute(
                             builder: (context) => const LandingPage4(),
@@ -128,21 +64,42 @@ class LandingPage3 extends StatelessWidget {
                       },
                       child: Container(
                         height: 56,
-                        width: double.infinity,
-                        alignment: Alignment.center,
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(30),
                         ),
-                        child: const Text(
-                          "Next",
-                          style: TextStyle(
-                            color: Color(0xff2492ba),
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: const [
+                            Icon(
+                              Icons.g_mobiledata,
+                              color: Colors.red,
+                              size: 32,
+                            ),
+                            SizedBox(width: 8),
+                            Text(
+                              "Sign in with Google",
+                              style: TextStyle(
+                                color: Colors.black87,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
+                    ),
+                  ),
+
+                  const SizedBox(height: 16),
+
+                  /// TERMS TEXT
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 40),
+                    child: Text(
+                      "By signing in you agree to our Terms of Service and Privacy Policy.",
+                      textAlign: TextAlign.center,
+                      style: TextStyle(color: Colors.white70, fontSize: 11),
                     ),
                   ),
 
@@ -150,7 +107,7 @@ class LandingPage3 extends StatelessWidget {
                 ],
               ),
 
-              /// ✅ SKIP BUTTON
+              /// SKIP BUTTON
               Positioned(
                 top: 12,
                 right: 16,
@@ -158,7 +115,9 @@ class LandingPage3 extends StatelessWidget {
                   onTap: () {
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (context) => const HomePage()),
+                      MaterialPageRoute(
+                        builder: (context) => const LandingPage4(),
+                      ),
                     );
                   },
                   child: const Text(
