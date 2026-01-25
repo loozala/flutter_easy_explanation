@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'csit_page.dart';
+import 'bca_page.dart';
+import 'computer_engineering_page.dart';
+import 'about_us.dart';
+import 'playlist_page.dart';
 
 class Notes extends StatelessWidget {
   const Notes({super.key});
@@ -9,9 +14,9 @@ class Notes extends StatelessWidget {
       backgroundColor: const Color(0xffF6F8FA),
       body: Column(
         children: [
-          /// 🔵 Top Header
+          ///  Top Header
           Container(
-            height: 180, // 👈 matches Figma
+            height: 180,
             width: double.infinity,
             padding: const EdgeInsets.fromLTRB(20, 60, 20, 24),
             decoration: const BoxDecoration(
@@ -25,7 +30,6 @@ class Notes extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                /// Welcome Text
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: const [
@@ -49,8 +53,6 @@ class Notes extends StatelessWidget {
                     ),
                   ],
                 ),
-
-                /// Profile Avatar
                 const CircleAvatar(
                   radius: 22,
                   backgroundColor: Colors.white,
@@ -66,14 +68,13 @@ class Notes extends StatelessWidget {
             ),
           ),
 
-          /// 📚 Content
+          /// Content
           Expanded(
             child: SingleChildScrollView(
               padding: const EdgeInsets.all(16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  /// Courses
                   const Text(
                     "Courses",
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -81,24 +82,31 @@ class Notes extends StatelessWidget {
                   const SizedBox(height: 12),
 
                   _courseTile(
-                    title: "Bsc.CSIT",
-                    subtitle: "Complete course study Materials",
+                    context: context,
+                    title: "BSc CSIT",
+                    subtitle: "Complete course study materials",
                     icon: Icons.menu_book_outlined,
+                    page: const CsitPage(),
                   ),
+
                   _courseTile(
+                    context: context,
                     title: "BCA",
-                    subtitle: "Complete course study Materials",
+                    subtitle: "Complete course study materials",
                     icon: Icons.subject,
+                    page: const BcaPage(),
                   ),
+
                   _courseTile(
+                    context: context,
                     title: "Computer Engineering",
-                    subtitle: "Complete course and study Materials",
+                    subtitle: "Complete course study materials",
                     icon: Icons.school,
+                    page: const ComputerEngineeringPage(),
                   ),
 
                   const SizedBox(height: 24),
 
-                  /// Study Tools
                   const Text(
                     "Study Tools",
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -107,11 +115,28 @@ class Notes extends StatelessWidget {
 
                   Row(
                     children: [
-                      _toolCard(icon: Icons.info, title: "About Us"),
+                      _toolCard(
+                        icon: Icons.info,
+                        title: "About Us",
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (_) => const AboutUs()),
+                          );
+                        },
+                      ),
                       const SizedBox(width: 16),
                       _toolCard(
                         icon: Icons.playlist_play_rounded,
                         title: "Playlist",
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => const PlaylistPage(),
+                            ),
+                          );
+                        },
                       ),
                     ],
                   ),
@@ -124,59 +149,25 @@ class Notes extends StatelessWidget {
     );
   }
 
-  /// 📘 Course Tile Widget
+  /// Course Tile
   Widget _courseTile({
+    required BuildContext context,
     required String title,
     required String subtitle,
     required IconData icon,
+    required Widget page,
   }) {
-    return Container(
-      margin: const EdgeInsets.only(bottom: 12),
-      padding: const EdgeInsets.all(14),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: const [
-          BoxShadow(color: Colors.black12, blurRadius: 6, offset: Offset(0, 3)),
-        ],
-      ),
-      child: Row(
-        children: [
-          Icon(icon, color: const Color(0xff2492BA)),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 18,
-                  ),
-                ),
-                const SizedBox(height: 4),
-                Text(
-                  subtitle,
-                  style: const TextStyle(fontSize: 12, color: Colors.grey),
-                ),
-              ],
-            ),
-          ),
-          const Icon(Icons.chevron_right, color: Colors.blue),
-        ],
-      ),
-    );
-  }
-
-  /// 🧰 Study Tool Card
-  Widget _toolCard({required IconData icon, required String title}) {
-    return Expanded(
+    return InkWell(
+      onTap: () {
+        Navigator.push(context, MaterialPageRoute(builder: (_) => page));
+      },
+      borderRadius: BorderRadius.circular(12),
       child: Container(
-        padding: const EdgeInsets.symmetric(vertical: 18),
+        margin: const EdgeInsets.only(bottom: 12),
+        padding: const EdgeInsets.all(14),
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(14),
+          borderRadius: BorderRadius.circular(12),
           boxShadow: const [
             BoxShadow(
               color: Colors.black12,
@@ -185,15 +176,72 @@ class Notes extends StatelessWidget {
             ),
           ],
         ),
-        child: Column(
+        child: Row(
           children: [
-            Icon(icon, color: const Color(0xff2492BA), size: 28),
-            const SizedBox(height: 8),
-            Text(
-              title,
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+            Icon(icon, color: const Color(0xff2492BA)),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    subtitle,
+                    style: const TextStyle(fontSize: 12, color: Colors.grey),
+                  ),
+                ],
+              ),
             ),
+            const Icon(Icons.chevron_right, color: Colors.blue),
           ],
+        ),
+      ),
+    );
+  }
+
+  /// Tool Card
+  Widget _toolCard({
+    required IconData icon,
+    required String title,
+    required VoidCallback onTap,
+  }) {
+    return Expanded(
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(14),
+        child: Container(
+          padding: const EdgeInsets.symmetric(vertical: 18),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(14),
+            boxShadow: const [
+              BoxShadow(
+                color: Colors.black12,
+                blurRadius: 6,
+                offset: Offset(0, 3),
+              ),
+            ],
+          ),
+          child: Column(
+            children: [
+              Icon(icon, color: const Color(0xff2492BA), size: 28),
+              const SizedBox(height: 8),
+              Text(
+                title,
+                style: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
