@@ -73,6 +73,14 @@ flutter:
     - assets/distributedsystem.png
     - assets/egovernance.png
 
+  fonts:
+    - family: Montserrat
+      fonts:
+        - asset: fonts/Montserrat-Regular.ttf
+        - asset: fonts/Montserrat-Bold.ttf
+          weight: 700
+
+
 
 
 
