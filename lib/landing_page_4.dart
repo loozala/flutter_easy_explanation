@@ -56,7 +56,14 @@ class LandingPage4 extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(horizontal: 40),
                     child: _actionButton(
                       title: "NEC Licence Preparation",
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const HomePage(),
+                          ),
+                        );
+                      },
                     ),
                   ),
 
@@ -78,28 +85,6 @@ class LandingPage4 extends StatelessWidget {
                     ),
                   ),
                 ],
-              ),
-
-              /// SKIP BUTTON
-              Positioned(
-                top: 12,
-                right: 16,
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(builder: (context) => const HomePage()),
-                    );
-                  },
-                  child: const Text(
-                    "Skip",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ),
               ),
             ],
           ),

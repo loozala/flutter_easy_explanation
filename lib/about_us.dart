@@ -20,28 +20,45 @@ class AboutUs extends StatelessWidget {
                 end: Alignment.bottomCenter,
               ),
             ),
-            child: Center(
-              child: Container(
-                width: 90,
-                height: 90,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  shape: BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(color: Color(0xdd2596be), blurRadius: 12),
-                  ],
+            child: Stack(
+              children: [
+                ///  BACK ARROW
+                Positioned(
+                  left: 8,
+                  top: -10,
+                  child: IconButton(
+                    icon: const Icon(Icons.arrow_back, color: Colors.white),
+                    onPressed: () {
+                      Navigator.pop(context);
+                    },
+                  ),
                 ),
-                child: const Center(
-                  child: Text(
-                    "E",
-                    style: TextStyle(
-                      fontSize: 36,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xff2492ba),
+
+                /// LOGO
+                Center(
+                  child: Container(
+                    width: 90,
+                    height: 90,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      shape: BoxShape.circle,
+                      boxShadow: [
+                        BoxShadow(color: Color(0xdd2596be), blurRadius: 12),
+                      ],
+                    ),
+                    child: const Center(
+                      child: Text(
+                        "E",
+                        style: TextStyle(
+                          fontSize: 36,
+                          fontWeight: FontWeight.bold,
+                          color: Color(0xff2492ba),
+                        ),
+                      ),
                     ),
                   ),
                 ),
-              ),
+              ],
             ),
           ),
 
@@ -52,54 +69,44 @@ class AboutUs extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: const [
-                  /// ABOUT US
                   Text(
                     "About Us",
                     style: TextStyle(
                       fontSize: 22,
-                      fontWeight: FontWeight.w800, // ExtraBold
+                      fontWeight: FontWeight.w800,
                       fontFamily: 'Montserrat',
                     ),
                   ),
-
                   SizedBox(height: 14),
-
                   Text(
                     "EasyExplanation is a learning platform designed to make computer science simple, clear, and accessible for everyone. Whether you're a beginner starting your coding journey or an experienced learner sharpening your skills, we provide easy-to-follow tutorials across programming, algorithms, data structures, AI, web development, and more.",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 14,
                       height: 1.6,
-                      color: Color(0xff5C5656), // description color
+                      color: Color(0xff5C5656),
                     ),
                   ),
-
                   SizedBox(height: 28),
-
-                  /// MISSION
                   Text(
                     "Our Mission",
                     style: TextStyle(
                       fontSize: 22,
-                      fontWeight: FontWeight.w800, // ExtraBold
+                      fontWeight: FontWeight.w800,
                       fontFamily: 'Montserrat',
                     ),
                   ),
-
                   SizedBox(height: 14),
-
                   Text(
                     "Our mission is to break down complex concepts into practical, step-by-step explanations that anyone can understand. We aim to empower learners with real-world skills, foster curiosity, and support continuous growth in the ever-evolving world of technology.",
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 14,
                       height: 1.6,
-                      color: Color(0xff5C5656), // description color
+                      color: Color(0xff5C5656),
                     ),
                   ),
-
                   SizedBox(height: 24),
-
                   Text(
                     "Learn smart. Code confidently. Grow with EasyExplanation.",
                     textAlign: TextAlign.center,
