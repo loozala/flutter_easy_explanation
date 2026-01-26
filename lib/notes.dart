@@ -84,7 +84,7 @@ class Notes extends StatelessWidget {
                   _courseTile(
                     context: context,
                     title: "BSc CSIT",
-                    subtitle: "Complete course study materials",
+                    subtitle: "Complete course and study materials",
                     icon: Icons.menu_book_outlined,
                     page: const CsitPage(),
                   ),
@@ -92,7 +92,7 @@ class Notes extends StatelessWidget {
                   _courseTile(
                     context: context,
                     title: "BCA",
-                    subtitle: "Complete course study materials",
+                    subtitle: "Complete course and study materials",
                     icon: Icons.subject,
                     page: const BcaPage(),
                   ),
@@ -100,7 +100,7 @@ class Notes extends StatelessWidget {
                   _courseTile(
                     context: context,
                     title: "Computer Engineering",
-                    subtitle: "Complete course study materials",
+                    subtitle: "Complete course and study materials",
                     icon: Icons.school,
                     page: const ComputerEngineeringPage(),
                   ),
