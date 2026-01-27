@@ -9,179 +9,167 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xffF7F7F7),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              /// WELCOME CARD
-              Container(
-                padding: const EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  gradient: const LinearGradient(
-                    colors: [Color(0xff2492ba), Color(0xff15566d)],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                  borderRadius: BorderRadius.circular(20),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.zero, // top header is full width
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            /// 🔵 FULL TOP HEADER (NO SIDE PADDING)
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.fromLTRB(16, 40, 16, 28),
+              decoration: const BoxDecoration(
+                gradient: LinearGradient(
+                  colors: [Color(0xff2492ba), Color(0xff15566d)],
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
                 ),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: const [
-                          Text(
-                            "Welcome back,",
-                            style: TextStyle(
-                              color: Colors.white70,
-                              fontSize: 14,
-                            ),
-                          ),
-                          SizedBox(height: 4),
-                          Text(
-                            "Loozala\nBajracharya",
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          SizedBox(height: 6),
-                          Text(
-                            "Ready to learn easily?",
-                            style: TextStyle(
-                              color: Colors.white70,
-                              fontSize: 13,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    CircleAvatar(
-                      radius: 32,
-                      backgroundColor: Colors.white.withOpacity(0.2),
-                      child: const CircleAvatar(
-                        radius: 24,
-                        backgroundColor: Colors.white,
-                        child: Text(
-                          "E",
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(90),
+                ),
+              ),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const [
+                        Text(
+                          "Welcome back,",
+                          style: TextStyle(color: Colors.white70, fontSize: 14),
+                        ),
+                        SizedBox(height: 4),
+                        Text(
+                          "Loozala\nBajracharya",
                           style: TextStyle(
-                            color: Color(0xff2492ba),
-                            fontSize: 24,
+                            color: Colors.white,
+                            fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
                         ),
+                        SizedBox(height: 6),
+                        Text(
+                          "Ready to learn easily?",
+                          style: TextStyle(color: Colors.white70, fontSize: 13),
+                        ),
+                      ],
+                    ),
+                  ),
+                  CircleAvatar(
+                    radius: 32,
+                    backgroundColor: Colors.white.withOpacity(0.2),
+                    child: const CircleAvatar(
+                      radius: 24,
+                      backgroundColor: Colors.white,
+                      child: Text(
+                        "E",
+                        style: TextStyle(
+                          color: Color(0xff2492ba),
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
-                  ],
-                ),
-              ),
-
-              const SizedBox(height: 20),
-
-              /// LIST ITEMS
-              _menuTile(
-                context: context,
-                icon: Icons.menu_book,
-                color: Colors.orange,
-                title: "Bsc.CSIT",
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const CoursesPage(),
-                    ),
-                  );
-                },
-              ),
-
-              _menuTile(
-                context: context,
-                icon: Icons.subject,
-                color: Colors.green,
-                title: "BCA",
-              ),
-
-              _menuTile(
-                context: context,
-                icon: Icons.school,
-                color: Colors.yellow,
-                title: "Computer Engineering",
-              ),
-
-              const SizedBox(height: 20),
-
-              /// STUDY TOOLS
-              const Text(
-                "Study Tools",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-
-              const SizedBox(height: 12),
-
-              GridView.count(
-                crossAxisCount: 2,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                mainAxisSpacing: 16,
-                crossAxisSpacing: 16,
-                padding: const EdgeInsets.only(top: 10, bottom: 30),
-                childAspectRatio: 2.5,
-                children: const [
-                  _ToolCard(
-                    icon: Icons.help_outline,
-                    color: Colors.blue,
-                    title: "Questions",
-                  ),
-                  _ToolCard(
-                    icon: Icons.edit_note,
-                    color: Colors.pink,
-                    title: "Notes",
-                  ),
-                  _ToolCard(
-                    icon: Icons.bookmark,
-                    color: Colors.green,
-                    title: "Bookmark",
                   ),
                 ],
               ),
+            ),
 
-              Align(
-                alignment: Alignment.centerRight,
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const AboutUs()),
-                    );
-                  },
-                  child: const Padding(
-                    padding: EdgeInsets.only(top: 12),
-                    child: Text(
-                      "Next →",
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Color(0xff2492ba),
-                        fontWeight: FontWeight.w600,
+            const SizedBox(height: 24),
+
+            /// 📦 REST OF CONTENT WITH SIDE PADDING 16
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  ///  COURSE LIST
+                  _menuTile(
+                    context: context,
+                    icon: Icons.menu_book,
+                    title: "Courses",
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const CoursesPage(),
+                        ),
+                      );
+                    },
+                  ),
+
+                  _menuTile(
+                    context: context,
+                    icon: Icons.library_books,
+                    title: "Syllabus",
+                  ),
+
+                  _menuTile(
+                    context: context,
+                    icon: Icons.subject,
+                    title: "Exam Center",
+                  ),
+
+                  const SizedBox(height: 24),
+
+                  /// STUDY TOOLS
+                  const Text(
+                    "Study Tools",
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  ),
+
+                  const SizedBox(height: 12),
+
+                  GridView.count(
+                    crossAxisCount: 2,
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    mainAxisSpacing: 16,
+                    crossAxisSpacing: 16,
+                    padding: const EdgeInsets.only(bottom: 30),
+                    childAspectRatio: 2.5,
+                    children: const [
+                      _ToolCard(icon: Icons.help_outline, title: "Questions"),
+                      _ToolCard(icon: Icons.edit_note, title: "Notes"),
+                      _ToolCard(icon: Icons.bookmark, title: "Bookmark"),
+                    ],
+                  ),
+
+                  /// ➡️ NEXT
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const AboutUs(),
+                          ),
+                        );
+                      },
+                      child: const Text(
+                        "Next →",
+                        style: TextStyle(
+                          fontSize: 14,
+                          color: Color(0xff2492ba),
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                     ),
                   ),
-                ),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
   }
 
-  /// MENU TILE WIDGET
+  /// MENU TILE
   Widget _menuTile({
     required BuildContext context,
     required IconData icon,
-    required Color color,
     required String title,
     VoidCallback? onTap,
   }) {
@@ -200,10 +188,7 @@ class HomePage extends StatelessWidget {
         ),
         child: Row(
           children: [
-            CircleAvatar(
-              backgroundColor: color,
-              child: Icon(icon, color: Colors.white),
-            ),
+            Icon(icon, color: const Color(0xff2492BA), size: 28),
             const SizedBox(width: 16),
             Expanded(
               child: Text(
@@ -225,14 +210,9 @@ class HomePage extends StatelessWidget {
 /// STUDY TOOL CARD
 class _ToolCard extends StatelessWidget {
   final IconData icon;
-  final Color color;
   final String title;
 
-  const _ToolCard({
-    required this.icon,
-    required this.color,
-    required this.title,
-  });
+  const _ToolCard({required this.icon, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -247,11 +227,7 @@ class _ToolCard extends StatelessWidget {
       ),
       child: Row(
         children: [
-          CircleAvatar(
-            radius: 18,
-            backgroundColor: color.withOpacity(0.2),
-            child: Icon(icon, color: color, size: 20),
-          ),
+          Icon(icon, color: const Color(0xff2492BA), size: 28),
           const SizedBox(width: 12),
           Text(
             title,
