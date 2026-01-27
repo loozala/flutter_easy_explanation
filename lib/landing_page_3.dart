@@ -22,7 +22,7 @@ class LandingPage3 extends StatelessWidget {
               /// MAIN CONTENT
               Column(
                 children: [
-                  const SizedBox(height: 120),
+                  const SizedBox(height: 150),
 
                   /// LOGO
                   Container(
@@ -48,7 +48,7 @@ class LandingPage3 extends StatelessWidget {
                     ),
                   ),
 
-                  const Spacer(),
+                  const SizedBox(height: 150),
 
                   /// GOOGLE SIGN IN BUTTON
                   Padding(

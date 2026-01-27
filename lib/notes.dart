@@ -18,7 +18,7 @@ class Notes extends StatelessWidget {
           Container(
             height: 180,
             width: double.infinity,
-            padding: const EdgeInsets.fromLTRB(20, 60, 20, 24),
+            padding: const EdgeInsets.all(16),
             decoration: const BoxDecoration(
               gradient: LinearGradient(
                 colors: [Color(0xff2492BA), Color(0xff15566D)],
@@ -53,14 +53,19 @@ class Notes extends StatelessWidget {
                     ),
                   ],
                 ),
-                const CircleAvatar(
-                  radius: 22,
-                  backgroundColor: Colors.white,
-                  child: Text(
-                    "E",
-                    style: TextStyle(
-                      color: Color(0xff15566D),
-                      fontWeight: FontWeight.bold,
+                CircleAvatar(
+                  radius: 32,
+                  backgroundColor: Colors.white.withOpacity(0.2),
+                  child: const CircleAvatar(
+                    radius: 24,
+                    backgroundColor: Colors.white,
+                    child: Text(
+                      "E",
+                      style: TextStyle(
+                        color: Color(0xff2492ba),
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ),
                 ),

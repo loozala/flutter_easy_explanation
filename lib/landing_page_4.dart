@@ -102,14 +102,14 @@ class LandingPage4 extends StatelessWidget {
         width: double.infinity,
         alignment: Alignment.center,
         decoration: BoxDecoration(
-          color: const Color(0xffF7F5FF),
+          color: const Color(0xffffffff),
           borderRadius: BorderRadius.circular(20),
         ),
         child: Text(
           title,
           style: const TextStyle(
             color: Color(0xff2492ba),
-            fontSize: 18,
+            fontSize: 20,
             fontWeight: FontWeight.bold,
           ),
         ),
