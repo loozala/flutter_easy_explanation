@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
 
-class SubjectPage extends StatelessWidget {
+class SubjectPage extends StatefulWidget {
   final String subjectName;
 
   const SubjectPage({super.key, required this.subjectName});
+
+  @override
+  State<SubjectPage> createState() => _SubjectPageState();
+}
+
+class _SubjectPageState extends State<SubjectPage> {
+  int selectedIndex = 0; // 0=Syllabus, 1=Chapters, 2=Questions
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +25,7 @@ class SubjectPage extends StatelessWidget {
             onPressed: () => Navigator.pop(context),
           ),
           title: Text(
-            subjectName, // 👈 CHANGES BASED ON CLICK
+            widget.subjectName,
             style: const TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
@@ -38,12 +45,89 @@ class SubjectPage extends StatelessWidget {
       ),
 
       /// BODY
-      body: Center(
-        child: Text(
-          subjectName,
-          style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
-        ),
+      body: Column(
+        children: [
+          /// 🔹 TOP SECTION (SYLLABUS | CHAPTERS | QUESTIONS)
+          Container(
+            color: Colors.white,
+            padding: const EdgeInsets.symmetric(vertical: 14),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                _buildTab("Syllabus", 0),
+                _buildTab("Chapters", 1),
+                _buildTab("Questions", 2),
+              ],
+            ),
+          ),
+
+          const Divider(height: 1),
+
+          /// 🔹 CONTENT
+          Expanded(child: _buildContent()),
+        ],
       ),
     );
+  }
+
+  /// TAB WIDGET
+  Widget _buildTab(String title, int index) {
+    final bool isSelected = selectedIndex == index;
+
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          selectedIndex = index;
+        });
+      },
+      child: Column(
+        children: [
+          Text(
+            title,
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w600,
+              color: isSelected ? const Color(0xff2492BA) : Colors.grey,
+            ),
+          ),
+          const SizedBox(height: 6),
+          AnimatedContainer(
+            duration: const Duration(milliseconds: 200),
+            height: 2,
+            width: isSelected ? 50 : 0,
+            color: const Color(0xff2492BA),
+          ),
+        ],
+      ),
+    );
+  }
+
+  /// CONTENT SWITCHER
+  Widget _buildContent() {
+    switch (selectedIndex) {
+      case 0:
+        return _syllabusContent();
+      case 1:
+        return _chaptersContent();
+      case 2:
+        return _questionsContent();
+      default:
+        return Container();
+    }
+  }
+
+  /// SYLLABUS CONTENT
+  Widget _syllabusContent() {
+    return ListView(padding: const EdgeInsets.all(16));
+  }
+
+  /// CHAPTERS CONTENT
+  Widget _chaptersContent() {
+    return ListView(padding: const EdgeInsets.all(16));
+  }
+
+  /// QUESTIONS CONTENT
+  Widget _questionsContent() {
+    return ListView(padding: const EdgeInsets.all(16));
   }
 }
