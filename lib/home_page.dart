@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'about_us.dart';
 import 'courses.dart';
 
 class HomePage extends StatelessWidget {
@@ -10,11 +9,11 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xffF7F7F7),
       body: SingleChildScrollView(
-        padding: EdgeInsets.zero, // top header is full width
+        padding: EdgeInsets.zero,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            /// 🔵 FULL TOP HEADER (NO SIDE PADDING)
+            //FULL TOP HEADER
             Container(
               width: double.infinity,
               padding: const EdgeInsets.fromLTRB(16, 40, 16, 28),
@@ -76,8 +75,6 @@ class HomePage extends StatelessWidget {
             ),
 
             const SizedBox(height: 24),
-
-            /// 📦 REST OF CONTENT WITH SIDE PADDING 16
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Column(
@@ -133,29 +130,6 @@ class HomePage extends StatelessWidget {
                       _ToolCard(icon: Icons.edit_note, title: "Notes"),
                       _ToolCard(icon: Icons.bookmark, title: "Bookmark"),
                     ],
-                  ),
-
-                  /// ➡️ NEXT
-                  Align(
-                    alignment: Alignment.centerRight,
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const AboutUs(),
-                          ),
-                        );
-                      },
-                      child: const Text(
-                        "Next →",
-                        style: TextStyle(
-                          fontSize: 14,
-                          color: Color(0xff2492ba),
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
                   ),
                 ],
               ),
