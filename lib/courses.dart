@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 
-class CoursesPage extends StatelessWidget {
+class CoursesPage extends StatefulWidget {
   const CoursesPage({super.key});
 
-  // 17 different courses
-  final List<Map<String, String>> courses = const [
+  @override
+  State<CoursesPage> createState() => _CoursesPageState();
+}
+
+class _CoursesPageState extends State<CoursesPage> {
+  final List<Map<String, String>> courses = [
     {
       "title": "C Programming",
       "chapters": "Chapters: 10",
@@ -51,7 +55,7 @@ class CoursesPage extends StatelessWidget {
       "image": "assets/internet.png",
     },
     {
-      "title": "Object Oriented Analysis and Design ",
+      "title": "Object Oriented Analysis and Design",
       "chapters": "Chapters: 4",
       "image": "assets/oop.png",
     },
@@ -92,17 +96,50 @@ class CoursesPage extends StatelessWidget {
     },
   ];
 
+  List<Map<String, String>> filteredCourses = [];
+
+  @override
+  void initState() {
+    super.initState();
+    filteredCourses = courses;
+  }
+
+  void searchCourse(String query) {
+    final results = courses.where((course) {
+      final title = course["title"]!.toLowerCase();
+      final input = query.toLowerCase();
+      return title.contains(input);
+    }).toList();
+
+    setState(() {
+      filteredCourses = results;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xffF7F7F7),
+
+      appBar: AppBar(
+        backgroundColor: const Color(0xff0F5C6E),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        title: const Text("Courses"),
+        centerTitle: true,
+      ),
+
       body: SafeArea(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              /// Welcome Text
+              // Welcome Text
               const Text(
                 "Welcome back 👋",
                 style: TextStyle(color: Colors.grey, fontSize: 14),
@@ -112,28 +149,27 @@ class CoursesPage extends StatelessWidget {
                 "Let's Learn Today",
                 style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
               ),
-
               const SizedBox(height: 16),
 
-              /// Search Bar
+              // Search Bar
               Container(
                 padding: const EdgeInsets.symmetric(horizontal: 12),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: const TextField(
-                  decoration: InputDecoration(
+                child: TextField(
+                  onChanged: searchCourse,
+                  decoration: const InputDecoration(
                     icon: Icon(Icons.search),
-                    hintText: "Search Courses . . . . .",
+                    hintText: "Search Courses...",
                     border: InputBorder.none,
                   ),
                 ),
               ),
-
               const SizedBox(height: 20),
 
-              /// Recently Visited
+              // Recently Visited
               Container(
                 width: double.infinity,
                 padding: const EdgeInsets.all(20),
@@ -167,8 +203,7 @@ class CoursesPage extends StatelessWidget {
                       child: TextButton(
                         onPressed: () {},
                         style: TextButton.styleFrom(
-                          foregroundColor:
-                              Colors.white, // This makes the text white
+                          foregroundColor: Colors.white,
                         ),
                         child: const Text("Continue →"),
                       ),
@@ -179,19 +214,18 @@ class CoursesPage extends StatelessWidget {
 
               const SizedBox(height: 20),
 
-              /// Courses Header
+              // Courses Header
               const Text(
                 "Courses",
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
-
               const SizedBox(height: 16),
 
-              /// Course Grid
+              // Courses Grid
               GridView.builder(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
-                itemCount: courses.length,
+                itemCount: filteredCourses.length,
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   crossAxisSpacing: 12,
@@ -199,7 +233,7 @@ class CoursesPage extends StatelessWidget {
                   childAspectRatio: 0.78,
                 ),
                 itemBuilder: (context, index) {
-                  final course = courses[index];
+                  final course = filteredCourses[index];
                   return _courseCard(
                     image: course["image"]!,
                     title: course["title"]!,
@@ -214,7 +248,6 @@ class CoursesPage extends StatelessWidget {
     );
   }
 
-  /// Course Card Widget
   Widget _courseCard({
     required String image,
     required String title,
