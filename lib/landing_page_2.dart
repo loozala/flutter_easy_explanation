@@ -166,7 +166,9 @@ class LandingPage2 extends StatelessWidget {
                   onTap: () {
                     Navigator.pushReplacement(
                       context,
-                      MaterialPageRoute(builder: (context) => const HomePage()),
+                      MaterialPageRoute(
+                        builder: (context) => const LandingPage3(),
+                      ),
                     );
                   },
                   child: const Text(
