@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'landing_page_3.dart';
 import 'home_page.dart';
+import 'signin_page.dart';
 
 class LandingPage2 extends StatelessWidget {
   const LandingPage2({super.key});
@@ -167,7 +168,7 @@ class LandingPage2 extends StatelessWidget {
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const LandingPage3(),
+                        builder: (context) => const SigninPage(),
                       ),
                     );
                   },

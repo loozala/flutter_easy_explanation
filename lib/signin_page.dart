@@ -110,28 +110,6 @@ class SigninPage extends StatelessWidget {
               ),
 
               /// SKIP BUTTON
-              Positioned(
-                top: 12,
-                right: 16,
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const LandingPage4(),
-                      ),
-                    );
-                  },
-                  child: const Text(
-                    "Skip",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ),
-              ),
             ],
           ),
         ),
