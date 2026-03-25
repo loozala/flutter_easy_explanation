@@ -23,22 +23,7 @@ dev_dependencies:
 flutter:
   uses-material-design: true
 
-  assets:
-    - assets/cprogramming.png
-    - assets/network.png
-    - assets/information_security.png
-    - assets/information_system.png
-    - assets/internet.png
-    - assets/oop.png
-    - assets/python.png
-    - assets/tensorflow.png
-    - assets/webapplication.png
-    - assets/webtechnology.png
-    - assets/datastructure.png
-    - assets/database.png
-    - assets/big_data.png
-    - assets/distributedsystem.png
-    - assets/egovernance.png
+  
 
   fonts:
     - family: Montserrat
