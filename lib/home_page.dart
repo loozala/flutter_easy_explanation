@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'courses.dart';
+import 'package:flutter_easy_explanation/playlist_nec.dart';
+import 'package:flutter_easy_explanation/practice_questions.dart';
+import 'syllabus_nec.dart';
+import 'playlist_nec.dart';
+import 'about_us.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -13,7 +17,7 @@ class HomePage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            //FULL TOP HEADER
+            // FULL TOP HEADER
             Container(
               width: double.infinity,
               padding: const EdgeInsets.fromLTRB(16, 40, 16, 28),
@@ -30,33 +34,42 @@ class HomePage extends StatelessWidget {
               child: Row(
                 children: [
                   Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: const [
-                        Text(
-                          "Welcome back,",
-                          style: TextStyle(color: Colors.white70, fontSize: 14),
-                        ),
-                        SizedBox(height: 4),
-                        Text(
-                          "Loozala\nBajracharya",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
+                    child: Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: const [
+                          Text(
+                            "Welcome back,",
+                            style: TextStyle(
+                              color: Colors.white70,
+                              fontSize: 14,
+                            ),
                           ),
-                        ),
-                        SizedBox(height: 6),
-                        Text(
-                          "Ready to learn easily?",
-                          style: TextStyle(color: Colors.white70, fontSize: 13),
-                        ),
-                      ],
+                          SizedBox(height: 4),
+                          Text(
+                            "Loozala\nBajracharya",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(height: 6),
+                          Text(
+                            "Ready to learn easily?",
+                            style: TextStyle(
+                              color: Colors.white70,
+                              fontSize: 13,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   CircleAvatar(
                     radius: 32,
-                    backgroundColor: Colors.white.withOpacity(0.2),
+                    backgroundColor: Colors.white24,
                     child: const CircleAvatar(
                       radius: 24,
                       backgroundColor: Colors.white,
@@ -73,23 +86,29 @@ class HomePage extends StatelessWidget {
                 ],
               ),
             ),
-
             const SizedBox(height: 24),
+            Padding(
+              padding: EdgeInsets.only(left: 16, bottom: 12),
+              child: const Text(
+                "Computer Engineering",
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  ///  COURSE LIST
+                  /// COURSE LIST
                   _menuTile(
                     context: context,
                     icon: Icons.menu_book,
-                    title: "Courses",
+                    title: "Syllabus",
                     onTap: () {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const CoursesPage(),
+                          builder: (context) => const SyllabusNec(),
                         ),
                       );
                     },
@@ -98,13 +117,15 @@ class HomePage extends StatelessWidget {
                   _menuTile(
                     context: context,
                     icon: Icons.library_books,
-                    title: "Syllabus",
-                  ),
-
-                  _menuTile(
-                    context: context,
-                    icon: Icons.subject,
-                    title: "Exam Center",
+                    title: "Practice Questions",
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const PracticeQuestions(),
+                        ),
+                      );
+                    },
                   ),
 
                   const SizedBox(height: 24),
@@ -125,10 +146,29 @@ class HomePage extends StatelessWidget {
                     crossAxisSpacing: 16,
                     padding: const EdgeInsets.only(bottom: 30),
                     childAspectRatio: 2.5,
-                    children: const [
-                      _ToolCard(icon: Icons.help_outline, title: "Questions"),
-                      _ToolCard(icon: Icons.edit_note, title: "Notes"),
-                      _ToolCard(icon: Icons.bookmark, title: "Bookmark"),
+                    children: [
+                      _ToolCard(
+                        icon: Icons.playlist_play_rounded,
+                        title: "Playlist",
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => const PlaylistNec(),
+                            ),
+                          );
+                        },
+                      ),
+                      _ToolCard(
+                        icon: Icons.info,
+                        title: "About Us",
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (_) => const AboutUs()),
+                          );
+                        },
+                      ),
                     ],
                   ),
                 ],
@@ -185,29 +225,34 @@ class HomePage extends StatelessWidget {
 class _ToolCard extends StatelessWidget {
   final IconData icon;
   final String title;
+  final VoidCallback? onTap;
 
-  const _ToolCard({required this.icon, required this.title});
+  const _ToolCard({required this.icon, required this.title, this.onTap});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
-        boxShadow: [
-          BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 8),
-        ],
-      ),
-      child: Row(
-        children: [
-          Icon(icon, color: const Color(0xff2492BA), size: 28),
-          const SizedBox(width: 12),
-          Text(
-            title,
-            style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 14),
-          ),
-        ],
+    return InkWell(
+      onTap: onTap,
+      borderRadius: BorderRadius.circular(12),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(12),
+          boxShadow: [
+            BoxShadow(color: Colors.black.withOpacity(0.05), blurRadius: 8),
+          ],
+        ),
+        child: Row(
+          children: [
+            Icon(icon, color: const Color(0xff2492BA), size: 28),
+            const SizedBox(width: 12),
+            Text(
+              title,
+              style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 14),
+            ),
+          ],
+        ),
       ),
     );
   }
