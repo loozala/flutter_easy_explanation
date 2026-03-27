@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easy_explanation/license_note_selection_page.dart';
 import 'landing_page_3.dart';
-import 'license_note_selection_page.dart';
 
 class LandingPage2 extends StatelessWidget {
   const LandingPage2({super.key});
