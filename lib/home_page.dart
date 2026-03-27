@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_easy_explanation/playlist_nec.dart';
 import 'package:flutter_easy_explanation/practice_questions.dart';
 import 'syllabus_nec.dart';
 import 'playlist_nec.dart';

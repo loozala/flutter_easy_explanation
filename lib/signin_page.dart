@@ -2,8 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easy_explanation/license_note_selection_page.dart';
 import 'landing_page_4.dart';
 
-class SigninPage extends StatelessWidget {
+class SigninPage extends StatefulWidget {
   const SigninPage({super.key});
+
+  @override
+  State<SigninPage> createState() => _SigninPageState();
+}
+
+class _SigninPageState extends State<SigninPage> {
+  final TextEditingController usernameController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +28,9 @@ class SigninPage extends StatelessWidget {
         child: SafeArea(
           child: Stack(
             children: [
-              /// MAIN CONTENT
               Column(
                 children: [
-                  const SizedBox(height: 150),
+                  const SizedBox(height: 130),
 
                   /// LOGO
                   Container(
@@ -49,11 +56,58 @@ class SigninPage extends StatelessWidget {
                     ),
                   ),
 
-                  const SizedBox(height: 150),
+                  const SizedBox(height: 100),
 
-                  /// GOOGLE SIGN IN BUTTON
+                  /// USERNAME FIELD
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 32),
+                    padding: const EdgeInsets.symmetric(horizontal: 40),
+                    child: TextField(
+                      controller: usernameController,
+                      style: const TextStyle(color: Colors.grey),
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: Colors.white,
+                        hintText: "Username",
+                        hintStyle: const TextStyle(color: Colors.grey),
+                        prefixIcon: const Icon(
+                          Icons.person,
+                          color: Colors.grey,
+                        ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(16),
+                          borderSide: BorderSide.none,
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  const SizedBox(height: 20), // smaller space between fields
+                  /// PASSWORD FIELD
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 40),
+                    child: TextField(
+                      controller: passwordController,
+                      obscureText: true,
+                      style: const TextStyle(color: Colors.grey),
+                      decoration: InputDecoration(
+                        filled: true,
+                        fillColor: Colors.white,
+                        hintText: "Password",
+                        hintStyle: const TextStyle(color: Colors.grey),
+                        prefixIcon: const Icon(Icons.lock, color: Colors.grey),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(16),
+                          borderSide: BorderSide.none,
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  const SizedBox(height: 30),
+
+                  /// LOGIN BUTTON
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 40),
                     child: GestureDetector(
                       onTap: () {
                         Navigator.pushReplacement(
@@ -65,29 +119,26 @@ class SigninPage extends StatelessWidget {
                         );
                       },
                       child: Container(
-                        height: 56,
+                        height: 50,
+                        alignment: Alignment.center,
                         decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: const [
-                            Icon(
-                              Icons.g_mobiledata,
-                              color: Colors.red,
-                              size: 32,
-                            ),
-                            SizedBox(width: 8),
-                            Text(
-                              "Sign in with Google",
-                              style: TextStyle(
-                                color: Colors.black87,
-                                fontSize: 16,
-                                fontWeight: FontWeight.w600,
-                              ),
+                          color: const Color(0xff2492ba), // blue background
+                          borderRadius: BorderRadius.circular(20),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black26,
+                              blurRadius: 6,
+                              offset: const Offset(0, 3),
                             ),
                           ],
+                        ),
+                        child: const Text(
+                          "Login",
+                          style: TextStyle(
+                            color: Colors.white, // white text
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
                     ),
@@ -95,7 +146,7 @@ class SigninPage extends StatelessWidget {
 
                   const SizedBox(height: 16),
 
-                  /// TERMS TEXT
+                  /// TERMS
                   const Padding(
                     padding: EdgeInsets.symmetric(horizontal: 40),
                     child: Text(
@@ -104,33 +155,7 @@ class SigninPage extends StatelessWidget {
                       style: TextStyle(color: Colors.white70, fontSize: 11),
                     ),
                   ),
-
-                  const SizedBox(height: 30),
                 ],
-              ),
-
-              /// SKIP BUTTON
-              Positioned(
-                top: 12,
-                right: 16,
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const LandingPage4(),
-                      ),
-                    );
-                  },
-                  child: const Text(
-                    "Skip",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                ),
               ),
             ],
           ),
