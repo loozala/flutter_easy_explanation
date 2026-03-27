@@ -21,7 +21,7 @@ class LandingPage4 extends StatelessWidget {
         child: SafeArea(
           child: Column(
             children: [
-              const SizedBox(height: 60),
+              const SizedBox(height: 100),
 
               /// LOGO
               Container(
